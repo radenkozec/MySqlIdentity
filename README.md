@@ -13,16 +13,16 @@ Entity Framework provider (Microsoft.AspNet.Identity.EntityFramework).
 * Supports additional profile properties on your application's user model.
 * Provides MySqlUserStore<TUser> implementation that implements the same interfaces as the EntityFramework version:
 
-	-IUserStore<TUser>,
-	-IUserLoginStore<TUser>,
-	-IUserClaimStore<TUser>,
-	-IUserRoleStore<TUser>,
-	-IUserPasswordStore<TUser>,
-	-IUserSecurityStampStore<TUser>,
-	-IUserEmailStore<TUser>,
-	-IUserLockoutStore<TUser, string>,
-	-IUserTwoFactorStore<TUser, string>,
-	-IUserPhoneNumberStore<TUser>
+	- IUserStore<TUser>,
+	- IUserLoginStore<TUser>,
+	- IUserClaimStore<TUser>,
+	- IUserRoleStore<TUser>,
+	- IUserPasswordStore<TUser>,
+	- IUserSecurityStampStore<TUser>,
+	- IUserEmailStore<TUser>,
+	- IUserLockoutStore<TUser, string>,
+	- IUserTwoFactorStore<TUser, string>,
+	- IUserPhoneNumberStore<TUser>
 
 ## Instructions ##
 
