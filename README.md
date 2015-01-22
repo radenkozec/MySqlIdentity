@@ -12,16 +12,16 @@ Entity Framework provider (Microsoft.AspNet.Identity.EntityFramework).
 * Contains the same IdentityRole class used by the EntityFramework provider in the MVC 5 project template.
 * Supports additional profile properties on your application's user model.
 * Provides MySqlUserStore<TUser> implementation that implements the same interfaces as the EntityFramework version:
-  *IUserStore<TUser>,
-  *IUserLoginStore<TUser>,
-  *IUserClaimStore<TUser>,
-  *IUserRoleStore<TUser>,
-  *IUserPasswordStore<TUser>,
-  *IUserSecurityStampStore<TUser>,
-  *IUserEmailStore<TUser>,
-  *IUserLockoutStore<TUser, string>,
-  *IUserTwoFactorStore<TUser, string>,
-  *IUserPhoneNumberStore<TUser>
+		*IUserStore<TUser>,
+		*IUserLoginStore<TUser>,
+		*IUserClaimStore<TUser>,
+		*IUserRoleStore<TUser>,
+		*IUserPasswordStore<TUser>,
+		*IUserSecurityStampStore<TUser>,
+		*IUserEmailStore<TUser>,
+		*IUserLockoutStore<TUser, string>,
+		*IUserTwoFactorStore<TUser, string>,
+		*IUserPhoneNumberStore<TUser>
 
 ## Instructions ##
 
@@ -31,7 +31,7 @@ Entity Framework provider (Microsoft.AspNet.Identity.EntityFramework).
 Uninstall-Package Microsoft.AspNet.Identity.EntityFramework
 Uninstall-Package EntityFramework
 Install-Package MySql.AspNet.Identity
-```
+
     
 3. In ~/Models/IdentityModels.cs:
     * Remove the namespace: Microsoft.AspNet.Identity.EntityFramework
@@ -40,12 +40,16 @@ Install-Package MySql.AspNet.Identity
     * Remove the entire ApplicationDbContext class. You don't need that!
 	
 4. In ~/App_Start/Startup.Auth.cs
+	```
 	* Remove app.CreatePerOwinContext(ApplicationDbContext.Create);
+	```
 	
 	
 5 In ~/App_Start/IdentityConfig.cs
     * Remove the namespace: Microsoft.AspNet.Identity.EntityFramework
+	```
     * In method  public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+	```
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
 ```
