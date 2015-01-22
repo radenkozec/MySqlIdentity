@@ -41,16 +41,14 @@ Install-Package MySql.AspNet.Identity
     * Remove the entire ApplicationDbContext class. You don't need that!
 	
 4. In ~/App_Start/Startup.Auth.cs
-	```
+
 	* Remove app.CreatePerOwinContext(ApplicationDbContext.Create);
-	```
+
 	
 	
 5 In ~/App_Start/IdentityConfig.cs
     * Remove the namespace: Microsoft.AspNet.Identity.EntityFramework
-	```
     * In method  public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
-	```
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
 ```C#
