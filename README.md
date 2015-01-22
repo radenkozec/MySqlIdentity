@@ -53,7 +53,7 @@ Install-Package MySql.AspNet.Identity
 	```
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
-```
+```C#
 public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
 {
      // var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
