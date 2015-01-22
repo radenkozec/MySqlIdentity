@@ -1,5 +1,5 @@
 # MySql.AspNet.Identity #
-An ASP.NET Identity provider for MySql
+An ASP.NET Identity 2.1 provider for MySql
 
 ## Purpose ##
 
@@ -12,16 +12,16 @@ Entity Framework provider (Microsoft.AspNet.Identity.EntityFramework).
 * Contains the same IdentityRole class used by the EntityFramework provider in the MVC 5 project template.
 * Supports additional profile properties on your application's user model.
 * Provides MySqlUserStore<TUser> implementation that implements the same interfaces as the EntityFramework version:
-		*IUserStore<TUser>,
-        *IUserLoginStore<TUser>,
-        *IUserClaimStore<TUser>,
-        *IUserRoleStore<TUser>,
-        *IUserPasswordStore<TUser>,
-        *IUserSecurityStampStore<TUser>,
-        *IUserEmailStore<TUser>,
-        *IUserLockoutStore<TUser, string>,
-        *IUserTwoFactorStore<TUser, string>,
-        *IUserPhoneNumberStore<TUser>
+  *IUserStore<TUser>,
+  *IUserLoginStore<TUser>,
+  *IUserClaimStore<TUser>,
+  *IUserRoleStore<TUser>,
+  *IUserPasswordStore<TUser>,
+  *IUserSecurityStampStore<TUser>,
+  *IUserEmailStore<TUser>,
+  *IUserLockoutStore<TUser, string>,
+  *IUserTwoFactorStore<TUser, string>,
+  *IUserPhoneNumberStore<TUser>
 
 ## Instructions ##
 
@@ -48,9 +48,10 @@ Install-Package MySql.AspNet.Identity
     * In method  public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
-```C#
+```
 public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
 {
      // var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
      var manager = new ApplicationUserManager(new MySqlUserStore<ApplicationUser>());
+	 
 ```
