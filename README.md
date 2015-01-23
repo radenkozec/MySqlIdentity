@@ -26,6 +26,10 @@ Entity Framework provider (Microsoft.AspNet.Identity.EntityFramework).
 
 ## Instructions ##
 
+For more detailed instructions read this blog post : [ASP.NET Identity 2.1 implementation for MySQL](http://blog.developers.ba/asp-net-identity-2-1-for-mysql/)
+
+You will need to execute  [create script](https://github.com/radenkozec/MySqlIdentity/blob/master/MySql.AspNet.Identity/MySqlTableSetUp.sql) on your MySQL database which will create the tables required for the ASP.NET Identity provider.
+
 1. Create a new ASP.NET MVC 5 project, choosing the Individual User Accounts authentication type.
 2. Remove the Entity Framework packages and replace with MySql.AspNet.Identity:
 
@@ -35,19 +39,25 @@ Install-Package MySql.AspNet.Identity
 
     
 3. In ~/Models/IdentityModels.cs:
-    * Remove the namespace: Microsoft.AspNet.Identity.EntityFramework
+    * Remove the namespaces: 
+			Microsoft.AspNet.Identity.EntityFramework
+			System.Data.Entity
+4. Install NuGet Package called MySql.AspNet.Identity
     * Add the namespace: MySql.AspNet.Identity
 	This way ApplicationUser will inherit from another IdentityUser which resides in MySql.Asp.Net.Identity namespace
     * Remove the entire ApplicationDbContext class. You don't need that!
 	
-4. In ~/App_Start/Startup.Auth.cs
+5. In ~/App_Start/Startup.Auth.cs
 
 	* Remove app.CreatePerOwinContext(ApplicationDbContext.Create);
 
 	
 	
-5 In ~/App_Start/IdentityConfig.cs
-    * Remove the namespace: Microsoft.AspNet.Identity.EntityFramework
+6. In ~/App_Start/IdentityConfig.cs
+    
+	* Remove the namespaces: 
+			Microsoft.AspNet.Identity.EntityFramework
+			System.Data.Entity
     * In method  public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
