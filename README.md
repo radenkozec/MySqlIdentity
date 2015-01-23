@@ -31,10 +31,10 @@ For more detailed instructions read this blog post : [ASP.NET Identity 2.1 imple
 You will need to execute  [create script](https://github.com/radenkozec/MySqlIdentity/blob/master/MySql.AspNet.Identity/MySqlTableSetUp.sql) on your MySQL database which will create the tables required for the ASP.NET Identity provider.
 
 1. Create a new ASP.NET MVC 5 project, choosing the Individual User Accounts authentication type.
-2. Remove the Entity Framework packages and replace with MySql.AspNet.Identity:
+2. Remove the Entity Framework packages and replace with MySql.AspNet.Identity.
 
-Uninstall-Package Microsoft.AspNet.Identity.EntityFramework
-Uninstall-Package EntityFramework
+	* Uninstall-Package Microsoft.AspNet.Identity.EntityFramework
+	* Uninstall-Package EntityFramework
 3. Install-Package MySql.AspNet.Identity
 
     
