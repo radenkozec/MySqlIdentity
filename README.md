@@ -35,29 +35,29 @@ You will need to execute  [create script](https://github.com/radenkozec/MySqlIde
 
 Uninstall-Package Microsoft.AspNet.Identity.EntityFramework
 Uninstall-Package EntityFramework
-Install-Package MySql.AspNet.Identity
+3. Install-Package MySql.AspNet.Identity
 
     
-3. In ~/Models/IdentityModels.cs:
+4. In ~/Models/IdentityModels.cs:
     * Remove the namespaces: 
-			Microsoft.AspNet.Identity.EntityFramework
-			System.Data.Entity
-4. Install NuGet Package called MySql.AspNet.Identity
+		* Microsoft.AspNet.Identity.EntityFramework
+		* System.Data.Entity
+5. Install NuGet Package called MySql.AspNet.Identity
     * Add the namespace: MySql.AspNet.Identity
 	This way ApplicationUser will inherit from another IdentityUser which resides in MySql.Asp.Net.Identity namespace
     * Remove the entire ApplicationDbContext class. You don't need that!
 	
-5. In ~/App_Start/Startup.Auth.cs
+6. In ~/App_Start/Startup.Auth.cs
 
 	* Remove app.CreatePerOwinContext(ApplicationDbContext.Create);
 
 	
 	
-6. In ~/App_Start/IdentityConfig.cs
+7. In ~/App_Start/IdentityConfig.cs
     
 	* Remove the namespaces: 
-			Microsoft.AspNet.Identity.EntityFramework
-			System.Data.Entity
+	  	* Microsoft.AspNet.Identity.EntityFramework
+		* System.Data.Entity
     * In method  public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
 	replace ApplicationUserManager with another which accepts MySqlUserStore like this:
 
