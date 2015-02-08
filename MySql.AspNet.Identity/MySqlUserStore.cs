@@ -19,7 +19,8 @@ namespace MySql.AspNet.Identity
         IUserEmailStore<TUser>,
         IUserLockoutStore<TUser, string>,
         IUserTwoFactorStore<TUser, string>,
-        IUserPhoneNumberStore<TUser>
+        IUserPhoneNumberStore<TUser>,
+        IQueryableUserStore<TUser>
     where TUser : IdentityUser
     {
         private readonly string _connectionString;
@@ -504,5 +505,11 @@ namespace MySql.AspNet.Identity
             return Task.FromResult(0);
         }
 
+        public IQueryable<TUser> Users
+        {
+            get{
+                return _userRepository.GetAll();
+            }
+        }
     }
 }
