@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
+using System.Linq;
 
 namespace MySql.AspNet.Identity.Repositories
 {
@@ -51,6 +52,40 @@ namespace MySql.AspNet.Identity.Repositories
             }
         }
 
+        public IQueryable<TUser> GetAll()
+        {
+            var user = (TUser)Activator.CreateInstance(typeof(TUser));
+            List<TUser> users = new List<TUser>();
+
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
+                    @"SELECT Id,Email,EmailConfirmed,
+                PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,
+                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM AspNetUsers", null);
+                
+                while (reader.Read())
+                {
+                    user.Id = reader[0].ToString();
+                    user.Email = reader[1].ToString();
+                    user.EmailConfirmed = (bool)reader[2];
+                    user.PasswordHash = reader[3].ToString();
+                    user.SecurityStamp = reader[4].ToString();
+                    user.PhoneNumber = reader[5].ToString();
+                    user.PhoneNumberConfirmed = (bool)reader[6];
+                    user.TwoFactorAuthEnabled = (bool)reader[7];
+                    user.LockoutEndDate = reader[8] == DBNull.Value ? null : (DateTime?)reader[8];
+                    user.LockoutEnabled = (bool)reader[9];
+                    user.AccessFailedCount = (int)reader[10];
+                    user.UserName = reader[11].ToString();
+
+                    users.Add(user);
+                }
+
+            }
+            return users.AsQueryable<TUser>();
+        }
+        
         public TUser GetById(string userId)
         {
             var user = (TUser)Activator.CreateInstance(typeof(TUser));
