@@ -54,7 +54,6 @@ namespace MySql.AspNet.Identity.Repositories
 
         public IQueryable<TUser> GetAll()
         {
-            var user = (TUser)Activator.CreateInstance(typeof(TUser));
             List<TUser> users = new List<TUser>();
 
             using (var conn = new MySqlConnection(_connectionString))
@@ -66,6 +65,7 @@ namespace MySql.AspNet.Identity.Repositories
                 
                 while (reader.Read())
                 {
+                    var user = (TUser)Activator.CreateInstance(typeof(TUser));
                     user.Id = reader[0].ToString();
                     user.Email = reader[1].ToString();
                     user.EmailConfirmed = (bool)reader[2];
