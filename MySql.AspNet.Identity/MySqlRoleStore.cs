@@ -2,10 +2,8 @@ using System;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
-using TurbineHealthMonitoring.Infrastructure.Authentication.Repositories;
 
-namespace TurbineHealthMonitoring.Infrastructure.Authentication
+namespace MySql.AspNet.Identity
 {
     public class MySqlRoleStore<TRole> : IQueryableRoleStore<TRole>
         where TRole : IdentityRole
