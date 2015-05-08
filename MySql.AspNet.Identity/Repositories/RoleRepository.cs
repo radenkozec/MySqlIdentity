@@ -4,7 +4,7 @@ using System.Data;
 using System.Linq;
 using MySql.Data.MySqlClient;
 
-namespace TurbineHealthMonitoring.Infrastructure.Authentication.Repositories
+namespace MySql.AspNet.Identity.Repositories
 {
     public class RoleRepository<TRole> where TRole: IdentityRole
     {
