@@ -1,17 +1,17 @@
-﻿using System;
+using System;
 using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using MySql.AspNet.Identity.Repositories;
+using TurbineHealthMonitoring.Infrastructure.Authentication.Repositories;
 
-namespace MySql.AspNet.Identity
+namespace TurbineHealthMonitoring.Infrastructure.Authentication
 {
     public class MySqlRoleStore<TRole> : IQueryableRoleStore<TRole>
         where TRole : IdentityRole
     {
         private readonly string _connectionString;
-        private readonly RoleRepository _roleRepository;
+        private readonly RoleRepository<TRole> _roleRepository;
         public MySqlRoleStore()
             : this("DefaultConnection")
         {
@@ -21,14 +21,17 @@ namespace MySql.AspNet.Identity
         public MySqlRoleStore(string connectionStringName)
         {
             _connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ConnectionString;
-            _roleRepository = new RoleRepository(_connectionString);
+            _roleRepository = new RoleRepository<TRole>(_connectionString);
         }
 
 
 
         public IQueryable<TRole> Roles
         {
-            get { throw new NotImplementedException(); }
+            get
+            {
+                return _roleRepository.GetRoles();
+            }
         }
 
         public Task CreateAsync(TRole role)
