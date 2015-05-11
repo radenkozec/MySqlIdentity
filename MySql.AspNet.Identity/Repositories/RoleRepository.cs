@@ -1,15 +1,40 @@
-﻿using System.Collections.Generic;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using MySql.Data.MySqlClient;
 
 namespace MySql.AspNet.Identity.Repositories
 {
-    public class RoleRepository
+    public class RoleRepository<TRole> where TRole: IdentityRole
     {
         private readonly string _connectionString;
         public RoleRepository(string connectionString)
         {
             _connectionString = connectionString;
+        }
+
+        public IQueryable<TRole> GetRoles()
+        {
+            var roles = new List<TRole>();
+            using (var conn = new MySqlConnection(_connectionString))
+            {
+                var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text, @"SELECT Id,Name FROM AspNetRoles", null);
+
+                while (reader.Read())
+                {
+                    var role = (TRole)Activator.CreateInstance(typeof(TRole));
+
+
+                    role.Id = reader[0].ToString();
+                    role.Name = reader[1].ToString();
+                
+
+                    roles.Add(role);
+                }
+
+            }
+            return roles.AsQueryable();
         }
 
         public void Insert(IdentityRole role)
