@@ -75,7 +75,7 @@ namespace MySql.AspNet.Identity
         public Task<TUser> FindByIdAsync(string userId)
         {
             var user =_userRepository.GetById(userId);
-            if (user != null && !string.IsNullOrEmpty(user.Email))
+            if (user != null)
             {
                 user.Roles = _userRoleRepository.PopulateRoles(user.Id);
                 user.Claims = _userClaimRepository.PopulateClaims(user.Id);
