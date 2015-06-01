@@ -1,3 +1,5 @@
+using Microsoft.AspNet.Identity;
+using MySql.AspNet.Identity.Repositories;
 using System;
 using System.Configuration;
 using System.Linq;
