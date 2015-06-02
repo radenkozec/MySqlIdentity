@@ -24,7 +24,7 @@ namespace MySql.AspNet.Identity.Repositories
                             {"@ClaimValue",claim.Value}
                         };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO AspNetUserClaims(UserId,ClaimType,ClaimValue) VALUES(@UserId,@ClaimType,@ClaimValue)", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetuserclaims(UserId,ClaimType,ClaimValue) VALUES(@UserId,@ClaimType,@ClaimValue)", parameters);
             }
         }
 
@@ -40,7 +40,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                 MySqlHelper.ExecuteNonQuery(conn,
-                    @"DELETE FROM AspNetUserClaims WHERE UserId=@UserId AND ClaimType=@ClaimType AND ClaimValue=@ClaimValue", parameters);
+                    @"DELETE FROM aspnetuserclaims WHERE UserId=@UserId AND ClaimType=@ClaimType AND ClaimValue=@ClaimValue", parameters);
             }
         }
 
@@ -56,7 +56,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
-                    @"SELECT ClaimType,ClaimValue FROM AspNetUserClaims WHERE UserId=@Id", parameters);
+                    @"SELECT ClaimType,ClaimValue FROM aspnetuserclaims WHERE UserId=@Id", parameters);
                 while (reader.Read())
                 {
                     claims.Add(new IdentityUserClaim() { ClaimType = reader[0].ToString(), ClaimValue = reader[1].ToString() });

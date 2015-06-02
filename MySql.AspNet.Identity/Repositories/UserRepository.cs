@@ -34,7 +34,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@UserName", user.UserName}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO AspNetUsers VALUES(@Id,@Email,@EmailConfirmed,@PasswordHash,@SecurityStamp,@PhoneNumber,@PhoneNumberConfirmed,
+                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetusers VALUES(@Id,@Email,@EmailConfirmed,@PasswordHash,@SecurityStamp,@PhoneNumber,@PhoneNumberConfirmed,
                 @TwoFactorAuthEnabled,@LockoutEndDate,@LockoutEnabled,@AccessFailedCount,@UserName)", parameters);
             }
         }
@@ -48,7 +48,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@Id", user.Id}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM AspNetUsers WHERE Id=@Id", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM aspnetusers WHERE Id=@Id", parameters);
             }
         }
 
@@ -61,7 +61,7 @@ namespace MySql.AspNet.Identity.Repositories
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
                     @"SELECT Id,Email,EmailConfirmed,
                 PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,
-                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM AspNetUsers", null);
+                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM aspnetusers", null);
                 
                 while (reader.Read())
                 {
@@ -99,7 +99,7 @@ namespace MySql.AspNet.Identity.Repositories
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
                     @"SELECT Id,Email,EmailConfirmed,
                 PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,
-                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM AspNetUsers WHERE Id=@Id", parameters);
+                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM aspnetusers WHERE Id=@Id", parameters);
                 while (reader.Read())
                 {
                     user.Id = reader[0].ToString();
@@ -133,7 +133,7 @@ namespace MySql.AspNet.Identity.Repositories
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
                     @"SELECT Id,Email,EmailConfirmed,
                 PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,
-                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM AspNetUsers WHERE UserName=@UserName", parameters);
+                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM aspnetusers WHERE UserName=@UserName", parameters);
                 while (reader.Read())
                 {
                     user.Id = reader[0].ToString();
@@ -167,7 +167,7 @@ namespace MySql.AspNet.Identity.Repositories
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
                     @"SELECT Id,Email,EmailConfirmed,
                 PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,
-                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM AspNetUsers WHERE Email=@Email", parameters);
+                LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName FROM aspnetusers WHERE Email=@Email", parameters);
                 while (reader.Read())
                 {
                     user.Id = reader[0].ToString();
@@ -211,7 +211,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@Id", user.Id}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"UPDATE AspNetUsers 
+                MySqlHelper.ExecuteNonQuery(conn, @"UPDATE aspnetusers 
                 SET Id = @NewId,Email=@Email,EmailConfirmed=@EmailConfirmed,PasswordHash=@PasswordHash,SecurityStamp=@SecurityStamp,PhoneNumber=@PhoneNumber,PhoneNumberConfirmed=@PhoneNumberConfirmed,
                 TwoFactorEnabled=@TwoFactorAuthEnabled,LockoutEndDateUtc=@LockoutEndDate,LockoutEnabled=@LockoutEnabled,AccessFailedCount=@AccessFailedCount,UserName=@UserName
                 WHERE Id=@Id", parameters);

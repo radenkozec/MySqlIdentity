@@ -23,7 +23,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                 var idObject = MySqlHelper.ExecuteScalar(conn, CommandType.Text,
-                    @"SELECT Id FROM AspNetRoles WHERE Name=@RoleName", parameters);
+                    @"SELECT Id FROM aspnetroles WHERE Name=@RoleName", parameters);
                 string roleId = idObject == null ? null : idObject.ToString();
 
 
@@ -38,7 +38,7 @@ namespace MySql.AspNet.Identity.Repositories
                             {"@RoleId", roleId}
                         };
 
-                        MySqlHelper.ExecuteNonQuery(conn1, @"Insert into AspNetUserRoles(UserId,RoleId) VALUES(@Id,@RoleId)", parameters1);
+                        MySqlHelper.ExecuteNonQuery(conn1, @"Insert into aspnetuserroles(UserId,RoleId) VALUES(@Id,@RoleId)", parameters1);
                     }
                 }
             }
@@ -54,7 +54,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                 var idObject = MySqlHelper.ExecuteScalar(conn, CommandType.Text,
-                    @"SELECT Id FROM AspNetRoles WHERE Name=@RoleName", parameters);
+                    @"SELECT Id FROM aspnetroles WHERE Name=@RoleName", parameters);
                 string roleId = idObject == null ? null : idObject.ToString();
 
 
@@ -69,7 +69,7 @@ namespace MySql.AspNet.Identity.Repositories
                             {"@RoleId", roleId}
                         };
 
-                        MySqlHelper.ExecuteNonQuery(conn1, @"Delete FROM AspNetUserRoles WHERE UserId=@Id AND RoleId=@RoleId", parameters1);
+                        MySqlHelper.ExecuteNonQuery(conn1, @"Delete FROM aspnetuserroles WHERE UserId=@Id AND RoleId=@RoleId", parameters1);
                     }
                 }
             }
@@ -91,7 +91,7 @@ namespace MySql.AspNet.Identity.Repositories
 
 
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
-                    @"SELECT RoleId FROM AspNetUserRoles Where UserId=@Id", parameters);
+                    @"SELECT RoleId FROM aspnetuserroles Where UserId=@Id", parameters);
                 while (reader.Read())
                 {
                     roleIds.Add(reader[0].ToString());
@@ -109,7 +109,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                     var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
-                        @"SELECT Name FROM AspNetRoles Where Id=@Id", parameters);
+                        @"SELECT Name FROM aspnetroles Where Id=@Id", parameters);
                     while (reader.Read())
                     {
                         listRoles.Add(reader[0].ToString());

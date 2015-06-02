@@ -19,7 +19,7 @@ namespace MySql.AspNet.Identity.Repositories
             var roles = new List<TRole>();
             using (var conn = new MySqlConnection(_connectionString))
             {
-                var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text, @"SELECT Id,Name FROM AspNetRoles", null);
+                var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text, @"SELECT Id,Name FROM aspnetroles", null);
 
                 while (reader.Read())
                 {
@@ -47,7 +47,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@id", role.Id}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO AspNetRoles (Id, Name) VALUES (@name, @id)", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetroles (Id, Name) VALUES (@name, @id)", parameters);
             }
         }
 
@@ -60,7 +60,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@id", roleId}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM AspNetRoles WHERE Id = @id", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM aspnetroles WHERE Id = @id", parameters);
             }
         }
 
@@ -87,7 +87,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@id", roleId}
                 };
 
-                var result = MySqlHelper.ExecuteScalar(conn, CommandType.Text, @"SELECT Name FROM AspNetRoles WHERE Id = @id", parameters);
+                var result = MySqlHelper.ExecuteScalar(conn, CommandType.Text, @"SELECT Name FROM aspnetroles WHERE Id = @id", parameters);
                if (result != null)
                {
                    return result.ToString();
@@ -118,7 +118,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@name", roleName}
                 };
 
-                var result = MySqlHelper.ExecuteScalar(conn, CommandType.Text, @"SELECT Id FROM AspNetRoles WHERE Name = @name", parameters);
+                var result = MySqlHelper.ExecuteScalar(conn, CommandType.Text, @"SELECT Id FROM aspnetroles WHERE Name = @name", parameters);
                 if (result != null)
                 {
                     return result.ToString();
@@ -138,7 +138,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@id", role.Id}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"UPDATE AspNetRoles SET Name = @name WHERE Id = @id", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"UPDATE aspnetroles SET Name = @name WHERE Id = @id", parameters);
             }
         }
 

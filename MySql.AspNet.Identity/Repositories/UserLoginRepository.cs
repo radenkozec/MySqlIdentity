@@ -23,7 +23,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@ProviderKey", login.ProviderKey}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO AspNetUserLogins(UserId,LoginProvider,ProviderKey) VALUES(@Id,@LoginProvider,@ProviderKey)", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetuserlogins(UserId,LoginProvider,ProviderKey) VALUES(@Id,@LoginProvider,@ProviderKey)", parameters);
             }
         }
 
@@ -38,7 +38,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@ProviderKey", login.ProviderKey}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM AspNetUserLogins WHERE UserId = @Id AND LoginProvider = @LoginProvider AND ProviderKey = @ProviderKey", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"DELETE FROM aspnetuserlogins WHERE UserId = @Id AND LoginProvider = @LoginProvider AND ProviderKey = @ProviderKey", parameters);
             }
         }
 
@@ -53,7 +53,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@ProviderKey", login.ProviderKey}
                 };
                 var userIdObject = MySqlHelper.ExecuteScalar(conn, CommandType.Text,
-                    @"SELECT UserId FROM AspNetUserLogins WHERE LoginProvider = @LoginProvider AND ProviderKey = @ProviderKey", parameters);
+                    @"SELECT UserId FROM aspnetuserlogins WHERE LoginProvider = @LoginProvider AND ProviderKey = @ProviderKey", parameters);
                 userId = userIdObject == null
                     ? null
                     : userIdObject.ToString();
@@ -72,7 +72,7 @@ namespace MySql.AspNet.Identity.Repositories
                 };
 
                 var reader = MySqlHelper.ExecuteReader(conn, CommandType.Text,
-                   @"SELECT LoginProvider,ProviderKey FROM AspNetUserLogins Where UserId = @Id", parameters);
+                   @"SELECT LoginProvider,ProviderKey FROM aspnetuserlogins Where UserId = @Id", parameters);
                 while (reader.Read())
                 {
                     listLogins.Add(new UserLoginInfo(reader[0].ToString(), reader[1].ToString()));
