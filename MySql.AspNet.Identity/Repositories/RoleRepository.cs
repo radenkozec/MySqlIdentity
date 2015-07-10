@@ -47,7 +47,7 @@ namespace MySql.AspNet.Identity.Repositories
                     {"@id", role.Id}
                 };
 
-                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetroles (Id, Name) VALUES (@name, @id)", parameters);
+                MySqlHelper.ExecuteNonQuery(conn, @"INSERT INTO aspnetroles (Id, Name) VALUES (@id,@name)", parameters);
             }
         }
 
