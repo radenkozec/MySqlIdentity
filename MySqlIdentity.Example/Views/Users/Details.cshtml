@@ -1,0 +1,102 @@
+﻿@model MySql.AspNet.Identity.IdentityUser
+
+<div class="col-md-12">
+    <h4>IdentityUser</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TwoFactorAuthEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorAuthEnabled)
+        </dd>
+    </dl>
+    <h4>LİST OF ROLES FOR THİS USER</h4>
+    <div class="form-group">
+        <div class="col-md-10">
+            @foreach (string item in Model.Roles)
+            {
+                @Html.Label(@item);
+                <br />
+            }
+        </div>
+    </div>
+
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

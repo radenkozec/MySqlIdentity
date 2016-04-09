@@ -50,6 +50,7 @@ namespace MySqlIdentity.Example.Controllers
 
             var model = new IndexViewModel
             {
+                Email = UserManager.Users.Where(p => p.UserName == User.Identity.Name).FirstOrDefault().Email,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(User.Identity.GetUserId()),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(User.Identity.GetUserId()),

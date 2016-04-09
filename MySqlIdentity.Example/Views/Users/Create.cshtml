@@ -1,20 +1,21 @@
 ﻿@model MySqlIdentity.Example.Models.RegisterViewModel
+
 @{
-    ViewBag.Title = "Register";
+    ViewBag.Title = "Create";
 }
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+@using (Html.BeginForm("Create", "Users", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
     <h4>Create a new account.</h4>
     <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
+    @Html.ValidationSummary("", new { @class = "text-error" })
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.UserName, new { htmlAttributes = new { @class = "form-control", maxlength = "25" } })
+            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">
@@ -36,8 +37,20 @@
         </div>
     </div>
     <div class="form-group">
+        <label class="col-md-2 control-label">
+            Select User Role
+        </label>
+        <div class="col-md-10">
+            @foreach (var item in (SelectList)ViewBag.RoleId)
+            {
+                <input type="checkbox" name="SelectedRoles" value="@item.Value" class="checkbox-inline" />
+                @Html.Label(item.Value, new { @class = "control-label" })
+            }
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
+            <input type="submit" class="btn btn-default" value="Create" />
         </div>
     </div>
 }

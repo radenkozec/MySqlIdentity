@@ -49,9 +49,8 @@ namespace MySqlIdentity.Example.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -64,6 +63,11 @@ namespace MySqlIdentity.Example.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        [DataType(DataType.Text)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
